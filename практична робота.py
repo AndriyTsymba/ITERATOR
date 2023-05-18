@@ -1,24 +1,29 @@
-#2
-class SquareGenerator:
+class OddIterator:
     def __init__(self, N):
-        if not isinstance(N, int):
-            raise TypeError
+        if N <= 0:
+            raise ValueError
         self.N = N
-    def generate_squares(self):
-        for i in range(self.N +1 ):
-            yield i ** 2
+        self.current = 1
+    def __iter__(self):
+        return self
+    def __next__(self):
+        if self.current > self.N:
+            raise StopIteration
+        if self.current % 2 != 0:
+            number = self.current
+            self.current += 2
+            return number
+        else:
+            self.current += 1
+        return self.__next__()
 try:
-    n = int(input("Введіть число "))
-    generator = SquareGenerator(n)
-    squares = generator.generate_squares()
-    for i in squares:
-        print(i)
-except TypeError as e:
-    print(e)
-except ValueError:
-    print("Введіть коректне  число.")
-
-
+    iterator = OddIterator(10)
+    for number in iterator:
+        print(number)
+except ValueError as e:
+        print(str(e))
+except StopIteration:
+        print("Кінець")
 
 
 
