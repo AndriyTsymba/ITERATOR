@@ -24,3 +24,22 @@ def my_generator(data):
 
 for num in my_generator(lst):
     print(lst)
+#3 калькулятор
+def Calculatore():
+    def add(a,b):
+       return a+b
+    def sub(a,b):
+        return a-b
+    def mult(a,b):
+        return a*b
+    def div(a,b):
+        if b != 0:
+            return a/b
+        else:
+            raise ValueError("Divizion by zero")
+    return add,sub,mult,div
+# створення замикання
+aad,sub,mult,div = calc()
+print(div(3,0))
+
+
